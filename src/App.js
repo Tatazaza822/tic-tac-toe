@@ -24,6 +24,8 @@ function Square({ value, handleClick}) {
     return <button className="square" onClick={handleClick}>{value}</button>
 }
 
+
+
 export default function App() {
     const [values, setValues] = useState([
         null,
@@ -61,6 +63,12 @@ export default function App() {
         setValues(newValues)
     }
 
+    function handleRestart() {
+        setValues(Array(9).fill(null))
+        setWinner(null)
+        setIsXTurn(true)
+    }
+
     return ( 
     <div>
         <h1 className="status">{winner ? winner + ' is Win!' : 'Next Player: ' + (isXTurn ? 'X' : 'O')} </h1>
@@ -79,6 +87,7 @@ export default function App() {
             <Square value={values[7]} handleClick={() => {handleClick(7)}}/>
             <Square value={values[8]} handleClick={() => {handleClick(8)}}/>
         </div>
+        <button onClick= {() => handleRestart()}>Restart</button>
     </div>
     )
 }
